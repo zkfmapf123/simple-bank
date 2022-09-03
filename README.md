@@ -120,9 +120,18 @@ drop table transfers;
 ```
 // Docker + MySQL
 
-
 docker run --name mysql-local -p 3306:3306/tcp -e MYSQL_ROOT_PASSWORD=test -d mysql:8
 
+// Install ETC
+brew install golang-migrate
+
+brew update
+brew install node
+brew install nodemon
+npm i -g nodemon
+
+migrate -help
+migrate create -ext sql -dir db/migration -seq init_schema
 ```
 
 </details>
