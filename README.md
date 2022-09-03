@@ -130,8 +130,20 @@ brew install node
 brew install nodemon
 npm i -g nodemon
 
+// golang migrate
+// before initialize mysql in Docker
 migrate -help
 migrate create -ext sql -dir db/migration -seq init_schema
+
+make db-up
+make db-down
+https://github.com/golang-migrate/migrate/tree/master/database/mysql
 ```
 
 </details>
+
+## Reference
+
+<a href="https://gorm.io/docs/">GORM</a>
+<a href="https://github.com/jmoiron/sqlx">SQLX</a>
+<a href="https://jmoiron.github.io/sqlx/"> SQLX Document</a>

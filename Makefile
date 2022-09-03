@@ -13,3 +13,11 @@ db-up:
 db-down:
 	migrate -source file:./db/migration -database "mysql://root:1234@tcp(localhost:3306)/simple_bank" --verbose down
 	
+run:
+	go run ./src/main.go
+
+unit-test:
+	go test ./test/unit
+
+e2e-test:
+	go test ./test/e2e
