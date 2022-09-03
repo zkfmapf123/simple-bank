@@ -112,3 +112,16 @@ drop table transfers;
 ```
 
 </details>
+
+<details>
+<summary>Install</summary>
+<div markdown=1>
+
+```
+// Docker + MySQL
+
+docker run --name mysql-local -p 3306:3306/tcp -e MYSQL_ROOT_PASSWORD=test -d mysql:8
+
+```
+
+</details>
