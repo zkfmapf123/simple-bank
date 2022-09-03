@@ -16,8 +16,9 @@ Table accounts as A {
   owner varchar [not null]
   balance bigint [not null]
   currency varchar [not null]
-  created_at timestamptz [not null,default: `now()`]
-  updated_at timestamptz [not null,default: `now()`]
+  created_at bigint [not null,default: `now()`]
+  updated_at bigint [not null,default: `now()`]
+  timezone varchar
 
   Indexes {
     owner
@@ -28,7 +29,7 @@ Table entries as E {
   id int [pk, increment]
   account_id bigint [ref: > A.id]
   amount bigint [not null, note: 'can be nagative']
-  created_at timestamptz [not null,default: `now()`]
+  created_at bigint [not null,default: `now()`]
 
   Indexes {
     account_id
@@ -40,7 +41,7 @@ Table transfers {
   from_account_id bigint [ref: > A.id]
   to_account_id bigint [ref: > A.id]
   amount bigint [not null, note: 'must be positive']
-  created_at timestamptz [not null,default: `now()`]
+  created_at bigint [not null,default: `now()`]
 
   Indexes {
     from_account_id
@@ -48,7 +49,6 @@ Table transfers {
     (from_account_id, to_account_id)
   }
 }
-
 ```
 
 </details>
