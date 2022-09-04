@@ -31,31 +31,6 @@ var schema =`
 	)
 `
 
-type Accounts struct {
-	id int 
-	owner string
-	balance int
-	currency string
-	createdAt string `db:"created_at"`
-	updatedAt string `db:"updated_at"`
-	timezone string `db:"timezone"`
-}
-
-type Entries struct{
-	id int
-	accountId string `db:"account_id"`
-	amount int
-}
-
-type Transers struct {
-	id int
-	fromAccountId int `db:"from_account_id"`
-	toAccountId int `db:"to_account_id"`
-	amount int
-	createdAt int `db:"created_at"`
-}
-
-
 // init query
 func Conn() *sqlx.DB{
 	db, err := sqlx.Open("mysql","root:1234@tcp(localhost:3306)/simple_bank?parseTime=true")
@@ -68,7 +43,6 @@ func Conn() *sqlx.DB{
 	if err != nil {
 		panic(err.Error())
 	}
-	
+
 	return db
 }
-

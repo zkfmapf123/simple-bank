@@ -2,23 +2,18 @@ package main
 
 import (
 	"fmt"
-	"zkfmapf123/src/db_client"
+	"zkfmapf123/src/base"
+	"zkfmapf123/src/repository"
 )
 
 func main(){
-	db := db_client.Conn()
-	fmt.Println(db)
+	
+	accounts := []base.AccountModels{}
+	rows, err := repository.FindOne(accounts, "select * from accounts where owner=?","owner")
 
-	accounts := []string{}
-	err := db.Select(&accounts, "select owner from accounts order by created_at asc")
-	if err != nil{
-		panic(err)
+	if err != nil {
+		panic(err.Error())
 	}
 
-	fmt.Println(accounts)
-
-
-	
-	
-
+	fmt.Println(rows)
 }
