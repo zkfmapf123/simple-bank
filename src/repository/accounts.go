@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"reflect"
 	"zkfmapf123/src/base"
 	"zkfmapf123/src/db_client"
 	"zkfmapf123/src/utils"
@@ -15,6 +16,10 @@ type accounts struct {
 	UpdatedAt int64 `json:"updated_at"`
 	Currency string `json:"currency"`
 	Timezone string `json:"timezone"`
+}
+
+type FindParmas interface {
+	int | string
 }
 
 func NewAccount(owner string, balance int, currency string, tz string) *accounts {
@@ -40,9 +45,18 @@ func (ac *accounts) CreateAccountUseQuery (query string) error {
 /*
 * @todo use _.first
 */
-func GetAccount(id int) (*base.AccountModels, error) {
+func GetAccount[T FindParmas](param T) (*base.AccountModels, error) {
 	accounts := []base.AccountModels{}
-	rows, err := FindOne(accounts, "select * from accounts where id = ?", id)
+
+	var rows []base.AccountModels
+	var err error
+
+	if reflect.TypeOf(param).Name() == "string" {
+		rows, err = FindOne(accounts, "select * from accounts where owner = ?", param)
+	}else{
+		rows, err = FindOne(accounts, "select * from accounts where id = ?", param)
+	}
+
 	if err != nil {
 		return nil, err
 	}
