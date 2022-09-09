@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"zkfmapf123/src/base"
 	"zkfmapf123/src/db_client"
 	"zkfmapf123/src/utils"
 
@@ -29,9 +30,22 @@ func (ac *accounts) CreateAccount () error{
 	return err
 }
 
-func (ac accounts) CreateAccountUseQuery (query string) error {
+func (ac *accounts) CreateAccountUseQuery (query string) error {
 	db := db_client.Conn()
 	_ ,err := db.NamedExec(query, structs.Map(ac))
 	defer db.Close()
 	return err
 }
+
+/*
+* @todo use _.first
+*/
+func GetAccount(id int) (*base.AccountModels, error) {
+	accounts := []base.AccountModels{}
+	rows, err := FindOne(accounts, "select * from accounts where id = ?", id)
+	if err != nil {
+		return nil, err
+	}
+
+	return &rows[0], nil
+} 

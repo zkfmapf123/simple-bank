@@ -9,6 +9,36 @@ type storeable interface {
 	base.AccountModels | base.EntrieModels | base.TranserModels
 }
 
+/*
+* @desc Must Todo Update, Delete
+*/
+func Transaction(query string, args []interface{}) error {
+
+	db := db_client.Conn()
+
+	// transaction begin
+	tx ,err := db.Begin()
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	_, err = tx.Exec(query, args...)
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	err = tx.Commit()
+	if err != nil{
+		tx.Rollback()
+		return err
+	}
+
+	defer db.Close()
+	return nil
+}
+
 func FindOne[T storeable](stores []T,query string, args interface{}) ([]T, error){
 	var store T
 	db := db_client.Conn()

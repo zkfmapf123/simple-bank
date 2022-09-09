@@ -2,18 +2,15 @@ package main
 
 import (
 	"fmt"
-	"zkfmapf123/src/base"
 	"zkfmapf123/src/repository"
 )
 
 func main(){
-	
-	accounts := []base.AccountModels{}
-	rows, err := repository.FindOne(accounts, "select * from accounts where owner=?","owner")
 
-	if err != nil {
-		panic(err.Error())
-	}
+	fromAccount, _ := repository.GetAccount(17)
+	toAccount, _ := repository.GetAccount(18)
 
-	fmt.Println(rows)
+	err := repository.NewTransfer(fromAccount.Id, toAccount.Id, 500).Transfer(fromAccount, toAccount)
+
+	fmt.Println(err)
 }
