@@ -7,10 +7,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-/*
-	go test ./test
-*/
-
 func TestTransaction(t *testing.T){
 	Setup()
 	err1 := repository.Transaction("update accounts set balance = ? where id=?", []interface{}{900,17})
@@ -19,7 +15,6 @@ func TestTransaction(t *testing.T){
 }
 
 func TestTrasnfer(t *testing.T){
-
 	Setup()
 	fromAccount, err1 := repository.GetAccount("owner1")
 	toAccount, err2 := repository.GetAccount("owner2")
@@ -42,27 +37,27 @@ func TestTransferToFail(t *testing.T){
 	defer ShutDown()
 }
 
-// func TestTransferTx(t *testing.T){
-// 	Setup()
-// 	fromAccount, _ := repository.GetAccount("owner1")
-// 	toAccount, _ := repository.GetAccount("owner2")
+func TestTransferTx(t *testing.T){
+	Setup()
+	fromAccount, _ := repository.GetAccount("owner1")
+	toAccount, _ := repository.GetAccount("owner2")
 
-// 	// receiver
-// 	errs := make(chan error)
-// 	n := 5
-// 	amount:= int64(300)
+	// receiver
+	errs := make(chan error)
+	n := 5
+	amount:= int64(300)
 
-// 	for i := 0; i< n; i++ {
-// 		go func() {
-// 			err := repository.NewTransfer(fromAccount.Id, toAccount.Id, int(amount)).Transfer(fromAccount, toAccount)
-// 			errs <- err // inject
-// 		}()
-// 	}
+	for i := 0; i< n; i++ {
+		go func() {
+			err := repository.NewTransfer(fromAccount.Id, toAccount.Id, int(amount)).Transfer(fromAccount, toAccount)
+			errs <- err // inject
+		}()
+	}
 
-// 	// check result
-// 	for i := 0; i<n; i++ {
-// 		err := <-errs
-// 		assert.Equal(t, err, nil)
-// 	}
-// 	defer ShutDown()
-//  }
+	// check result
+	for i := 0; i<n; i++ {
+		err := <-errs
+		assert.Equal(t, err, nil)
+	}
+	defer ShutDown()
+ }
