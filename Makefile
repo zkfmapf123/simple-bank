@@ -21,3 +21,19 @@ unit-test:
 
 e2e-test:
 	go test ./test/e2e
+
+
+## API Curl
+
+api-base:
+	curl -X GET "http://localhost:8080/"
+
+api-account:
+	curl -d '{"owner":"leedonggyu", "currency":"KR", "timezone":"Asia/Seoul"}' \
+	-X POST "http://localhost:8080/account" \
+
+api-get:
+	curl -X GET "http://localhost:8080/account/32"
+
+api-list:
+	curl -X GET "http://localhost:8080/account?offset=0&limit=10"

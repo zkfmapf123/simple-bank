@@ -1,6 +1,6 @@
 CREATE TABLE `accounts` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `owner` varchar(255) NOT NULL,
+  `owner` varchar(255) NOT NULL unique,
   `balance` int NOT NULL,
   `currency` varchar(255) NOT NULL,
   `created_at` int NOT NULL,
