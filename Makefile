@@ -22,6 +22,9 @@ unit-test:
 e2e-test:
 	go test ./test/e2e
 
+e2e-bash:
+	sh ./e2e_bash_profile.sh
+
 
 ## API Curl
 

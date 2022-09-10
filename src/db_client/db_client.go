@@ -1,6 +1,9 @@
 package db_client
 
 import (
+	"log"
+	"zkfmapf123/src/utils"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
@@ -33,7 +36,12 @@ var schema =`
 
 // init query
 func Conn() *sqlx.DB{
-	db, err := sqlx.Open("mysql","root:1234@tcp(localhost:3306)/simple_bank?parseTime=true")
+	config, configErr := utils.LoadConfig(".")
+	if configErr != nil {
+		log.Fatal(configErr.Error())
+	}
+	
+	db, err := sqlx.Open(config.DBDriver,config.DBSource)
 
 	if err != nil{
 		panic(err.Error())
