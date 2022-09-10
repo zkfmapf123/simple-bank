@@ -157,3 +157,4 @@ https://github.com/golang-migrate/migrate/tree/master/database/mysql
 - <a href="https://github.com/gin-gonic/gin">Golang Gin</a>
 - <a href="https://pkg.go.dev/github.com/go-playground/validator#section-readme"> validator </a>
 - <a href="https://github.com/swaggo/gin-swagger"> Golang Gin Swagger </a>
+- <a href="https://github.com/spf13/viper"> Golang Viper (ENV) </a>
