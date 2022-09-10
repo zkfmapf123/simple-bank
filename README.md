@@ -1,5 +1,12 @@
 # Simple Bank
 
+## Todo
+
+- [x] Divide Handler / Service / Repository Layer
+- [ ] Connect Swagger
+- [ ] Connect Cloud (AWS)
+- [ ] Web FrontServer (with Jeahyock)
+
 <details>
 <summary>DB Schema</summary>
 <div markdown=1>
@@ -144,6 +151,9 @@ https://github.com/golang-migrate/migrate/tree/master/database/mysql
 
 ## Reference
 
-<a href="https://gorm.io/docs/">GORM</a>
-<a href="https://github.com/jmoiron/sqlx">SQLX</a>
-<a href="https://jmoiron.github.io/sqlx/"> SQLX Document</a>
+- <a href="https://gorm.io/docs/">GORM</a>
+- <a href="https://github.com/jmoiron/sqlx">SQLX</a>
+- <a href="https://jmoiron.github.io/sqlx/"> SQLX Document</a>
+- <a href="https://github.com/gin-gonic/gin">Golang Gin</a>
+- <a href="https://pkg.go.dev/github.com/go-playground/validator#section-readme"> validator </a>
+- <a href="https://github.com/swaggo/gin-swagger"> Golang Gin Swagger </a>
